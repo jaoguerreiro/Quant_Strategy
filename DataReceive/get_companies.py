@@ -31,8 +31,8 @@ df_top10 = df.nlargest(10, 'Market Cap')
 
 
 ### Salvando para CSV = ###
-#df.to_csv('SP500MarketCap2021.csv')
-#df_top10.to_csv('Top10MarketCap2021.csv')
+#df.to_csv('SP500MarketCap2021.csv', index = False)
+#df_top10.to_csv('Top10MarketCap2021.csv', index = False)
 
 print(df)
 print(df_top10)
