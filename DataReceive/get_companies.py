@@ -19,6 +19,7 @@ df.drop(['Security', 'SEC filings', 'GICS Sub-Industry', 'Headquarters Location'
 df.rename(columns = {'CIK':'Market Cap'}, inplace = True)
 
 #Adicionando Market Cap ao DataFrame para filtrar as top 10.
+#Obs: a consulta de get_quote_yahoo demora alguns minutos.
 tickers = df['Symbol'].values.tolist()  
 for ticker in tickers:
     if (("." not in ticker) & (ticker!='OGN')): ## remoção dos casos de erro em get_quote_yahoo (ausencia de dados)
@@ -28,15 +29,11 @@ for ticker in tickers:
 
 df_top10 = df.nlargest(10, 'Market Cap')
 
-df.to_csv('SP500MarketCap2021.csv')
-df_top10.to_csv('Top10MarketCap2021.csv')
+
+### Salvando para CSV = ###
+#df.to_csv('SP500MarketCap2021.csv')
+#df_top10.to_csv('Top10MarketCap2021.csv')
 
 print(df)
 print(df_top10)
 
-
-### PROXIMO PASSO ###
-# Obter para as top10 empresas as series de dados de preco e volume
-
-#stocks = yf.Tickers("GOOG MSFT AAPL")
-#stocks_data = stocks.history(star = "2010-01-01", end = "2021-01-01")
