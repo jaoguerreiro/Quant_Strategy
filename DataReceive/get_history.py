@@ -1,6 +1,5 @@
-
-### PROXIMO PASSO ###
-# Obter para as empresas selecionadas as series de dados de preco e volume
+### Obter para as empresas selecionadas as series de dados de preco e volume
+#
 
 import pandas as pd
 import yfinance as yf
@@ -17,6 +16,8 @@ stock_data = stocks.history(start = "2010-01-01", end = "2021-01-01")
 # Escolhendo quais dados não serão usados 
 stock_data.drop(['Stock Splits', 'Dividends', 'High', 'Low', 'Open'], axis='columns', inplace=True)
 
+# Salvando em CSV
 #stock_data.to_csv('DataReceive/2021Data/History_SelectedCompanies.csv')
 
-#print(stock_data)
+# FIltrando dados de uma única empresas
+#one_stock_data = pd.concat( [ stock_data['Close', 'AAPL'] , stock_data['Volume', 'AAPL'] ], axis=1 )
