@@ -8,13 +8,17 @@ import yfinance as yf
 df = pd.read_csv("DataReceive/2021Data/Top10MarketCap2021.csv")
 
 stocks_tickers = df['Symbol'].values.tolist() 
+
 stocks = yf.Tickers( stocks_tickers )
 
-# Escolhendo período a ser coletado
+    # Escolhendo período a ser coletado
 stock_data = stocks.history(start = "2010-01-01", end = "2021-01-01")
 
-# Escolhendo quais dados não serão usados 
-stock_data.drop(['Stock Splits', 'Dividends', 'High', 'Low', 'Open'], axis='columns', inplace=True)
+    # Escolhendo quais dados não serão usados 
+stock_data.drop(['Stock Splits', 'Dividends', 'High', 'Low', 'Open', 'Volume'], axis='columns', inplace=True)
+
+for ticker in stocks_tickers:
+    print(stock_data['Close'][ticker])
 
 # Salvando em CSV
 #stock_data.to_csv('DataReceive/2021Data/History_SelectedCompanies.csv')
